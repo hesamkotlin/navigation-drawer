@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">navigation drawer</string>
+    <string name="mi_nightmode">Dark Mode</string>
+    <string name="action_open_drawer">open</string>
+    <string name="action_close_drawer">close</string>
+</resources>
