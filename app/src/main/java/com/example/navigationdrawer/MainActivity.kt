@@ -2,6 +2,9 @@ package com.example.navigationdrawer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setupToolbar(){
         setSupportActionBar(mBinding.toolbar)
-        //toDo : conect drawer layout to navigation component
+        //toDo : connect drawer layout to navigation component later
     }
 
     private fun setupDrawerLayout() {
@@ -48,9 +51,12 @@ class MainActivity : AppCompatActivity() {
             mBinding.drawerLayout,
             mBinding.toolbar,
             R.string.action_open_drawer,
-            R.string.action_close_drawer
+             R.string.action_close_drawer
         )
         mBinding.drawerLayout.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
     }
 
@@ -58,11 +64,28 @@ class MainActivity : AppCompatActivity() {
         mBinding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
 
+
             }
 
 
             mBinding.drawerLayout.closeDrawer(GravityCompat.START)
+
+
             true
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_listfragment , menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(drawerToggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }
