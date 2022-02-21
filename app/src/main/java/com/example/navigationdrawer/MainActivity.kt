@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var drawerToggle: ActionBarDrawerToggle
-    private lateinit var btnSwitchTheme : SwitchMaterial
+    private lateinit var btnSwitchTheme: SwitchMaterial
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,18 +29,19 @@ class MainActivity : AppCompatActivity() {
         setupNavigationView()
     }
 
-    private fun initUiComponents(){
-        btnSwitchTheme = mBinding.navigationView.menu.findItem(R.id.mi_night_mode).actionView as SwitchMaterial
+    private fun initUiComponents() {
+        btnSwitchTheme =
+            mBinding.navigationView.menu.findItem(R.id.mi_night_mode).actionView as SwitchMaterial
         btnSwitchTheme.setOnCheckedChangeListener { _, isChecked ->
-            val mode =   if (isChecked){
-                AppCompatDelegate.MODE_NIGHT_YES
-            }else{
-                AppCompatDelegate.MODE_NIGHT_NO
+            var mode = when (isChecked) {
+                true -> AppCompatDelegate.MODE_NIGHT_YES
+                false -> AppCompatDelegate.MODE_NIGHT_NO
             }
             AppCompatDelegate.setDefaultNightMode(mode)
         }
     }
-    private fun setupToolbar(){
+
+    private fun setupToolbar() {
         setSupportActionBar(mBinding.toolbar)
         //toDo : connect drawer layout to navigation component later
     }
@@ -51,12 +52,13 @@ class MainActivity : AppCompatActivity() {
             mBinding.drawerLayout,
             mBinding.toolbar,
             R.string.action_open_drawer,
-             R.string.action_close_drawer
+            R.string.action_close_drawer
         )
         mBinding.drawerLayout.addDrawerListener(drawerToggle)
+        //sync stat for shwoing humberger :D
         drawerToggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        // when i delete this code humburger was shown : this is for back key on the action bar
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
@@ -76,12 +78,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_listfragment , menu)
+        menuInflater.inflate(R.menu.menu_listfragment, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(drawerToggle.onOptionsItemSelected(item)){
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
