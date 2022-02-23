@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mi_search"
+        android:icon="@drawable/ic_search"
+        android:title="search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mi_list_view_type"
+        android:icon="@drawable/ic_grid"
+        android:title="Type of list"
+        app:showAsAction="ifRoom" />
+
 
 </menu>

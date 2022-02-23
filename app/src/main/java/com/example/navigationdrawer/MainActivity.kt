@@ -1,7 +1,9 @@
 package com.example.navigationdrawer
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -56,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         )
         mBinding.drawerLayout.addDrawerListener(drawerToggle)
         //sync stat for shwoing humberger :D
-        drawerToggle.syncState()
         // when i delete this code humburger was shown : this is for back key on the action bar
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -77,17 +78,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        drawerToggle.syncState()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_listfragment, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true
+        when(item.itemId){
+            R.id.mi_list_view_type->{
+
+            }
+            R.id.mi_search ->{
+
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        drawerToggle.onConfigurationChanged(newConfig)
+    }
 
+    override fun onBackPressed() {
+        if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START))
+            mBinding.drawerLayout.closeDrawer(GravityCompat.START)
+        else {
+            super.onBackPressed()
+        }
+    }
 }
