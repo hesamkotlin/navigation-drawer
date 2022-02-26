@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -11,22 +12,31 @@
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:openDrawer="start"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            tools:openDrawer="start">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/purple_400"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:titleTextColor="?attr/colorOnPrimary" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:background="@color/purple_400"
-                    app:titleTextColor="?attr/colorOnPrimary"/>
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -35,20 +45,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                app:menu="@menu/menu_navigaition"
-                app:headerLayout="@layout/layout_navigation_header" />
+                app:headerLayout="@layout/layout_navigation_header"
+                app:menu="@menu/menu_navigaition" />
 
         </androidx.drawerlayout.widget.DrawerLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/purple_400"
             android:src="@drawable/ic_add"
-            />
+            app:backgroundTint="@color/purple_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
