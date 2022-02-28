@@ -7,14 +7,18 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.GONE
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModel
 import com.example.navigationdrawer.databinding.ActivityMainBinding
 import com.example.navigationdrawer.features.InterActionViewModel
+import com.example.navigationdrawer.features.detail.DetailFragment
 import com.example.navigationdrawer.features.list.ListFragment
 import com.google.android.material.switchmaterial.SwitchMaterial
 
@@ -41,8 +45,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showListFragment() {
+        mBinding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        mBinding.toolbar.visibility = GONE
+
         val fm = supportFragmentManager
-        fm.beginTransaction().replace(R.id.fragment_container, ListFragment()).commit()
+        fm.beginTransaction().replace(R.id.fragment_container, DetailFragment()).commit()
     }
 
     private fun initUiComponents() {
@@ -130,4 +137,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+//    fun View.hide(){
+//        visibility = GONE
+//    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -14,5 +15,6 @@
         android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.LargeComponent"
         android:src="@{pokemon.image}"
-        android:layout_margin="@dimen/space_4"/>
+        android:layout_margin="@dimen/space_4"
+        tools:background="@drawable/pokemon"/>
 </layout>
